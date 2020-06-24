@@ -1,19 +1,27 @@
 <template>
   <div class="container master" v-if="!acabou">
     <div>
-      <button type="button" class="button downvote" v-on:click="getAnswer('LEFT')">
+      <button
+        type="button"
+        class="button downvote"
+        v-on:click="getAnswer('LEFT')"
+      >
         <i class="fa fa-times fa-3x"></i>
       </button>
     </div>
 
     <div class="movie-card">
-      <img :src="currentMovie.cover" :alt="currentMovie.title" :title="currentMovie.title" />
+      <img
+        :src="currentMovie.cover"
+        :alt="currentMovie.title"
+        :title="currentMovie.title"
+      />
       <div class="text">
         <h4>
-          <b>{{currentMovie.title}}</b>
+          <b>{{ currentMovie.title }}</b>
         </h4>
         <hr />
-        <p>{{currentMovie.description}}</p>
+        <p>{{ currentMovie.description }}</p>
       </div>
     </div>
 
@@ -115,12 +123,54 @@ span {
 </style>
 
 <script>
+import Axios from "axios";
+
+// Cria instância do axios
+const axios = Axios.create();
+
 export default {
   name: "MovieSelection",
-  data: () => ({}),
+  data: function() {
+    return {
+      currentMovie: "",
+      answers: [],
+      movieIndex: 0,
+      acabou: false,
+      parabens: false,
+      email: "",
+    };
+  },
   async mounted() {
     const resp = await axios.get("https://matchflix.herokuapp.com/movies");
     this.movies = resp.data;
-  }
+    this.currentMovie = this.movies[this.movieIndex];
+    console.log(this.currentMovie);
+  },
+  methods: {
+    getAnswer: function(action) {
+      this.answers.push({
+        movie_id: this.currentMovie.id,
+        action: action,
+      });
+      this.movieIndex++;
+      this.currentMovie = this.movies[this.movieIndex];
+      if (this.movieIndex == this.movies.length) {
+        this.acabou = true;
+      }
+      console.log(this.answers);
+    },
+    sendAnswers: async function() {
+      const resp = await axios.post(
+        "https://matchflix.herokuapp.com/user-movies",
+        {
+          email: this.email,
+          answers: this.answers,
+        }
+      );
+      if (resp.status == 201) {
+        this.parabens = true;
+      }
+    },
+  },
 };
 </script>

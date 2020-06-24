@@ -4,7 +4,6 @@
   </div>
 </template>
 
-
 <script>
 import MovieSelection from "@/components/MovieSelection.vue";
 

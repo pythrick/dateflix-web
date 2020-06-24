@@ -20,7 +20,8 @@
           text
           rounded
           class="my-2"
-        >{{ link.name }}</v-btn>
+          >{{ link.name }}</v-btn
+        >
         <v-flex py-4 text-center white--text xs12>
           {{ new Date().getFullYear() }} —
           <strong>Dateflix</strong>
@@ -39,14 +40,18 @@ export default {
       links: [
         {
           route: "/",
-          name: "Home"
+          name: "Home",
         },
         {
           route: "/about",
-          name: "About"
-        }
-      ]
+          name: "About",
+        },
+        {
+          route: "/movies-list",
+          name: "Movies List",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
