@@ -5,6 +5,7 @@
       <v-spacer></v-spacer>
       <v-btn to="/" text rounded>Home</v-btn>
       <v-btn to="/movies-list" text rounded>Movies List</v-btn>
+      <v-btn to="/playlist" text rounded>Playlist</v-btn>
       <v-btn to="/about" text rounded>About</v-btn>
     </v-app-bar>
     <v-content>
@@ -20,8 +21,7 @@
           text
           rounded
           class="my-2"
-          >{{ link.name }}</v-btn
-        >
+        >{{ link.name }}</v-btn>
         <v-flex py-4 text-center white--text xs12>
           {{ new Date().getFullYear() }} —
           <strong>Dateflix</strong>
@@ -40,18 +40,22 @@ export default {
       links: [
         {
           route: "/",
-          name: "Home",
+          name: "Home"
         },
         {
           route: "/about",
-          name: "About",
+          name: "About"
+        },
+        {
+          route: "/playlist",
+          name: "Playlist"
         },
         {
           route: "/movies-list",
-          name: "Movies List",
-        },
-      ],
+          name: "Movies List"
+        }
+      ]
     };
-  },
+  }
 };
 </script>
