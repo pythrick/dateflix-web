@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import MoviesList from "../views/MoviesList.vue";
 import Playlist from "../views/Playlist.vue";
+import FindAMatch from "../views/FindAMatch.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/playlist",
     name: "Playlist",
     component: Playlist,
+  },
+  {
+    path: "/find-a-match",
+    name: "Find a Match",
+    component: FindAMatch,
   },
   {
     path: "/about",
