@@ -6,8 +6,6 @@
       <v-btn to="/" text rounded>Home</v-btn>
       <v-btn to="/movies-list" text rounded>Movies List</v-btn>
       <v-btn to="/playlist" text rounded>Playlist</v-btn>
-      <v-btn to="/about" text rounded>About</v-btn>
-      <v-btn to="/find-a-match" text rounded>Find a Match</v-btn>
     </v-app-bar>
     <v-content>
       <router-view />
@@ -44,20 +42,12 @@ export default {
           name: "Home"
         },
         {
-          route: "/about",
-          name: "About"
-        },
-        {
-          route: "/playlist",
-          name: "Playlist"
-        },
-        {
           route: "/movies-list",
           name: "Movies List"
         },
         {
-          route: "/find-a-match",
-          name: "Find a Match"
+          route: "/playlist",
+          name: "Playlist"
         }
       ]
     };

@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row dense>
       <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
-        <v-card>
+        <v-card :to="'/find-a-match/' + card.id">
           <v-img
             :src="card.src"
             class="white--text align-end"
@@ -15,7 +15,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn icon>
+            <v-btn icon to="/movies-list/">
               <v-icon>mdi-heart</v-icon>
             </v-btn>
 
@@ -49,6 +49,7 @@ export default {
 
     for (const movie of resp.data) {
       this.cards.push({
+        id: movie.id,
         title: movie.title,
         src: movie.cover,
         flex: 6

@@ -31,6 +31,21 @@
           </div>
         </v-expand-transition>
       </v-card>
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">It's a Match!</v-card-title>
+
+          <v-card-text>You and Fulano have liked each other.</v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+
+            <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-row>
   </v-container>
 </template>
@@ -45,7 +60,8 @@ export default {
       currentItem: "",
       answers: [],
       itemIndex: 0,
-      finished: false
+      finished: false,
+      dialog: false
     };
   },
   async mounted() {
@@ -59,9 +75,14 @@ export default {
         action: action
       });
       this.itemIndex++;
-      this.currentItem = this.movies[this.itemIndex];
+      console.log(this.itemIndex);
+      console.log(this.movies.length);
       if (this.itemIndex == this.movies.length) {
         this.finished = true;
+        this.dialog = true;
+        console.log("Acabou bebe");
+      } else {
+        this.currentItem = this.movies[this.itemIndex];
       }
     }
   }

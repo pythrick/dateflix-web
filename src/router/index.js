@@ -24,7 +24,7 @@ const routes = [
     component: Playlist,
   },
   {
-    path: "/find-a-match",
+    path: "/find-a-match/:id",
     name: "Find a Match",
     component: FindAMatch,
   },
