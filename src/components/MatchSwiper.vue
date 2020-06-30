@@ -34,16 +34,49 @@
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
           <v-card-title class="headline">It's a Match!</v-card-title>
-
           <v-card-text>You and Fulano have liked each other.</v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-
-            <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
-          </v-card-actions>
+          <v-container>
+            <v-row justify="center">
+              <v-col cols="6">
+                <v-img
+                  :src="currentItem.image"
+                  :alt="currentItem.title"
+                  :title="currentItem.title"
+                  class="rounded-circle mx-2"
+                  height="100px"
+                  width="100px"
+                ></v-img>
+              </v-col>
+              <v-col cols="6">
+                <v-img
+                  :src="currentItem.image"
+                  :alt="currentItem.title"
+                  :title="currentItem.title"
+                  class="rounded-circle mx-2"
+                  height="100px"
+                  width="100px"
+                ></v-img>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div class="text-center">
+                  <div class="my-2">
+                    <v-btn large color="pink" rounded dark>
+                      Go to Instagram
+                      <v-icon right dark>mdi-instagram</v-icon>
+                    </v-btn>
+                  </div>
+                  <div class="my-2">
+                    <v-btn large color="primary" rounded dark>
+                      Keep Playing
+                      <v-icon right dark>mdi-gesture-swipe</v-icon>
+                    </v-btn>
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card>
       </v-dialog>
     </v-row>
@@ -52,7 +85,7 @@
 
 <script>
 export default {
-  name: "ItemsSelector",
+  name: "MatchSwiper",
   props: ["items"],
   data: function() {
     return {
@@ -61,7 +94,7 @@ export default {
       answers: [],
       itemIndex: 0,
       finished: false,
-      dialog: false
+      dialog: true
     };
   },
   async mounted() {
@@ -75,12 +108,10 @@ export default {
         action: action
       });
       this.itemIndex++;
-      console.log(this.itemIndex);
-      console.log(this.movies.length);
+
       if (this.itemIndex == this.movies.length) {
         this.finished = true;
         this.dialog = true;
-        console.log("Acabou bebe");
       } else {
         this.currentItem = this.movies[this.itemIndex];
       }

@@ -13,13 +13,13 @@
           </div>
         </v-card>
       </v-col>
-      <ItemsSelector v-if="requestCompleted" :items="profiles" />
+      <MatchSwiper v-if="requestCompleted" :items="profiles" />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import ItemsSelector from "@/components/ItemsSelector.vue";
+import MatchSwiper from "@/components/MatchSwiper.vue";
 // import Axios from "axios";
 
 // // Cria instância do axios
@@ -28,7 +28,7 @@ import ItemsSelector from "@/components/ItemsSelector.vue";
 export default {
   name: "FindAMatch",
   components: {
-    ItemsSelector
+    MatchSwiper
   },
   data() {
     return {

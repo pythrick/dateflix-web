@@ -1,11 +1,11 @@
 <template>
   <div>
-    <ItemsSelector v-if="requestCompleted" :items="movies" />
+    <MovieSwiper v-if="requestCompleted" :items="movies" />
   </div>
 </template>
 
 <script>
-import ItemsSelector from "@/components/ItemsSelector.vue";
+import MovieSwiper from "@/components/MovieSwiper.vue";
 import Axios from "axios";
 
 // Cria instância do axios
@@ -14,7 +14,7 @@ const axios = Axios.create();
 export default {
   name: "MoviesList",
   components: {
-    ItemsSelector
+    MovieSwiper
   },
   data() {
     return {

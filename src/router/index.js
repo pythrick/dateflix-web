@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import MoviesList from "../views/MoviesList.vue";
 import Playlist from "../views/Playlist.vue";
 import FindAMatch from "../views/FindAMatch.vue";
+import MatchList from "../views/MatchList.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/find-a-match/:id",
     name: "Find a Match",
     component: FindAMatch,
+  },
+  {
+    path: "/match-list",
+    name: "Match List",
+    component: MatchList,
   },
   {
     path: "/about",
