@@ -1,5 +1,8 @@
 <template>
   <div>
+    <v-alert type="error" v-if="error">
+      {{errorMessage}}
+    </v-alert>
     <Login />
   </div>
 </template>
@@ -14,6 +17,16 @@ export default {
   components: {
     // HelloWorld,
     Login
+  },
+  data() {
+    return {error: false}
+  },
+  mounted() {
+    const loginParam = this.$route.query.login;
+    if(loginParam === 'failed'){
+      this.error = true;
+      this.errorMessage = 'Authentication failed, please try again.'
+    }
   }
 };
 </script>

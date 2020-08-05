@@ -5,6 +5,7 @@ import MoviesList from "../views/MoviesList.vue";
 import Playlist from "../views/Playlist.vue";
 import FindAMatch from "../views/FindAMatch.vue";
 import MatchList from "../views/MatchList.vue";
+import SignIn from "../views/SignIn.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/match-list",
     name: "Match List",
     component: MatchList,
+  },
+  {
+    path: "/signin",
+    name: "Sign In",
+    component: SignIn,
   },
   {
     path: "/about",

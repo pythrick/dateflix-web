@@ -1,16 +1,34 @@
 <template>
   <div class="text-center">
     <h1>
-      Lorem ipsum dolor sit amet
+      The Netflix's Tinder
       <br />
-      <small>Phasellus varius, ligula nec placerat porta.</small>
+      <small>Find someone to watch a Netflix movie with you remotely.</small>
     </h1>
-    <br />
+    <br />Do you already have a Dateflix account?
     <div class="my-2">
-      <v-btn rounded color="secondary" dark>Sign In</v-btn>
-    </div>
+      <v-btn
+        rounded
+        color="secondary"
+        dark
+        large
+        href="https://www.instagram.com/oauth/authorize?client_id=2670394346612031&redirect_uri=https://localhost:8080/signin&scope=user_profile,user_media&response_type=code"
+      >
+        Sign In with Instagram
+        <v-icon right dark>mdi-instagram</v-icon>
+      </v-btn>
+    </div>New here? Create your new account:
     <div class="my-2">
-      <v-btn rounded color="success" dark>Sign Up</v-btn>
+      <v-btn
+        rounded
+        color="success"
+        dark
+        large
+        href="https://www.instagram.com/oauth/authorize?client_id=2670394346612031&redirect_uri=https://localhost:8080/signup&scope=user_profile,user_media&response_type=code"
+      >
+        Sign Up with Instagram
+        <v-icon right dark>mdi-instagram</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
