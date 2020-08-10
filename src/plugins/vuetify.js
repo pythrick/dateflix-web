@@ -5,6 +5,9 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
   theme: {
-    dark: true
-  }
+    dark: true,
+  },
+  icons: {
+    iconfont: "mdi", // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+  },
 });
