@@ -60,11 +60,6 @@ export default {
       drawer: null,
       links: [
         {
-          route: "/",
-          name: "Home",
-          icon: "mdi-instagram"
-        },
-        {
           route: "/movies-list",
           name: "Movies List",
           icon: "mdi-instagram"
