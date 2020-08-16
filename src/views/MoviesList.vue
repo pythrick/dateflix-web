@@ -58,7 +58,6 @@ export default {
   },
   async mounted() {
     const resp = await listMovies(this.page);
-    console.log(resp);
     this.requestCompleted = true;
     this.movies = [];
     for (const movie of resp.data.results) {
@@ -74,11 +73,12 @@ export default {
     this.currentItem = this.movies[this.itemIndex];
   },
   methods: {
-    // TODO: Resolver problema de indices
     getAnswer: async function(action) {
       const like = action === "RIGHT";
       likeMovie(this.currentItem.id, like);
       this.itemIndex++;
+
+      // Controls pagination workflow
       if (this.itemIndex == this.movies.length - 3) {
         const resp = await listMovies(this.page);
         this.page++;
@@ -91,8 +91,10 @@ export default {
             url: movie.url
           });
         }
-        this.currentItem = this.movies[this.itemIndex];
-      } else if (this.itemIndex == this.movies.length) {
+      }
+
+      // Controls currentItem
+      if (this.itemIndex == this.movies.length) {
         this.finished = true;
       } else {
         this.currentItem = this.movies[this.itemIndex];

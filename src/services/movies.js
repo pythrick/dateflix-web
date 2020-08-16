@@ -26,3 +26,11 @@ export function likeMovie(id, like) {
     }
   );
 }
+
+export function getPlaylist(pageNumber) {
+  return Http.get(`/liked-movies/?page=${pageNumber}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}
