@@ -34,3 +34,11 @@ export function getPlaylist(pageNumber) {
     },
   });
 }
+
+export function getMovie(movieId) {
+  return Http.get(`/liked-movies/${movieId}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}

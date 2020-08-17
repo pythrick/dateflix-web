@@ -1,33 +1,45 @@
 <template>
   <v-container>
     <v-row>
-      <v-card class="mx-auto" max-width="344">
-        <v-img
-          :src="currentItem.image"
-          :alt="currentItem.title"
-          :title="currentItem.title"
-          height="300px"
-          class="white--text align-end"
-        >
-          <v-card-title style="text-shadow: 1px 1px #000">{{ currentItem.title }}</v-card-title>
-        </v-img>
+      <v-card class="mx-auto" min-width="344">
+        <v-carousel cycle height="400" hide-delimiters show-arrows>
+          <v-carousel-item
+            v-for="(picture, i) in currentProfile.pictures"
+            :key="i"
+            :src="picture"
+            reverse-transition="fade-transition"
+            transition="fade-transition"
+          >
+          </v-carousel-item>
+        </v-carousel>
         <v-card-actions>
-          <v-btn class="mx-2" fab dark large color="red" v-on:click="getAnswer('LEFT')">
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            large
+            color="red"
+            v-on:click="getAnswer('LEFT')"
+          >
             <v-icon dark>mdi-heart-off</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon @click="show = !show">
-            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn class="mx-2" fab dark large color="green accent-3" v-on:click="getAnswer('RIGHT')">
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            large
+            color="green accent-3"
+            v-on:click="getAnswer('RIGHT')"
+          >
             <v-icon dark>mdi-heart</v-icon>
           </v-btn>
         </v-card-actions>
+        <v-card-title>{{ currentProfile.name }}</v-card-title>
         <v-expand-transition>
-          <div v-show="show">
+          <div>
             <v-divider></v-divider>
-            <v-card-text>{{ currentItem.description }}</v-card-text>
+            <v-card-text>{{ currentProfile.bio }}</v-card-text>
           </div>
         </v-expand-transition>
       </v-card>
@@ -39,9 +51,9 @@
             <v-row justify="center">
               <v-col cols="6">
                 <v-img
-                  :src="currentItem.image"
-                  :alt="currentItem.title"
-                  :title="currentItem.title"
+                  :src="currentProfile.pictures[0]"
+                  :alt="currentProfile.name"
+                  :title="currentProfile.name"
                   class="rounded-circle mx-2"
                   height="100px"
                   width="100px"
@@ -49,9 +61,9 @@
               </v-col>
               <v-col cols="6">
                 <v-img
-                  :src="currentItem.image"
-                  :alt="currentItem.title"
-                  :title="currentItem.title"
+                  :src="currentProfile.pictures[0]"
+                  :alt="currentProfile.name"
+                  :title="currentProfile.name"
                   class="rounded-circle mx-2"
                   height="100px"
                   width="100px"
@@ -86,36 +98,31 @@
 <script>
 export default {
   name: "MatchSwiper",
-  props: ["items"],
+  props: ["profiles"],
   data: function() {
     return {
       show: false,
-      currentItem: "",
       answers: [],
-      itemIndex: 0,
       finished: false,
-      dialog: true
+      dialog: true,
+      currentProfile: "",
+      profileIndex: 0,
     };
   },
   async mounted() {
-    this.movies = this.items;
-    this.currentItem = this.movies[this.itemIndex];
+    this.currentProfile = this.profiles[this.profileIndex];
   },
   methods: {
     getAnswer: function(action) {
-      this.answers.push({
-        movie_id: this.currentItem.id,
-        action: action
-      });
-      this.itemIndex++;
-
-      if (this.itemIndex == this.movies.length) {
+      this.profileIndex++;
+      console.log(action);
+      if (this.profileIndex == this.profiles.length) {
         this.finished = true;
         this.dialog = true;
       } else {
-        this.currentItem = this.movies[this.itemIndex];
+        this.currentProfile = this.profiles[this.profileIndex];
       }
-    }
-  }
+    },
+  },
 };
 </script>
