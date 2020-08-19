@@ -11,3 +11,19 @@ export function listProfiles(movieId) {
     },
   });
 }
+
+export function likeProfile(movieId, profileId, like) {
+  return Http.post(
+    `/profile-likes/`,
+    {
+      movie: movieId,
+      to_user: profileId,
+      like: like,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
+  );
+}
