@@ -73,6 +73,7 @@ export default {
     // List profiles
     const profilesResp = await listProfiles(movieId);
     this.profiles = [];
+
     for (const profile of profilesResp.data.results) {
       this.profiles.push({
         pictures: profile.pictures,
@@ -81,8 +82,9 @@ export default {
         id: profile.id
       });
     }
-    this.page++;
     this.profilesLoaded = true;
+
+    // TODO: Tratar paginação
   }
 };
 </script>

@@ -35,7 +35,7 @@
           </div>
         </v-expand-transition>
       </v-card>
-      <v-dialog v-model="dialog" max-width="290">
+      <v-dialog v-if="match" v-model="match" max-width="290">
         <v-card>
           <v-card-title class="headline">It's a Match!</v-card-title>
           <v-card-text>You and {{match.name}} have liked each other for this movie.</v-card-text>
@@ -105,21 +105,19 @@ export default {
       show: false,
       answers: [],
       finished: false,
-      dialog: false,
+      // dialog: false,
       currentProfile: "",
       profileIndex: 0,
-      match: {
-        name: "",
-        instagram: ""
-      }
+      match: false
     };
   },
-  async mounted() {
+  async created() {
     this.currentProfile = this.profiles[this.profileIndex];
   },
   methods: {
     keepPlaying: function() {
-      this.dialog = false;
+      // this.dialog = false;
+      this.match = false;
       this.profileIndex++;
       if (this.profileIndex == this.profiles.length) {
         this.finished = true;
@@ -134,10 +132,13 @@ export default {
         this.currentProfile.id,
         like
       );
+
       if (resp.data.match) {
-        this.match.name = resp.data.name;
-        this.match.instagram = resp.data.instagram;
-        this.dialog = true;
+        this.match = {
+          name: resp.data.profile.name,
+          instagram: resp.data.profile.instagram
+        };
+        // this.dialog = true;
       } else {
         this.profileIndex++;
         if (this.profileIndex == this.profiles.length) {

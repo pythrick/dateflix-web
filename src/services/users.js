@@ -1,5 +1,17 @@
 import Http from "./http"; // não precisa de .js
 
+function getToken() {
+  return localStorage.getItem("token");
+}
+
+export function getMe() {
+  return Http.get("/me", {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}
+
 export function createUser(
   instagramCode,
   firstName,

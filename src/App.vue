@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" temporary app v-if="isAuthenticated">
-      <v-list-item>
+      <v-list-item v-model="loggedUser">
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+          <v-img :src="loggedUser.picture"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
+          <v-list-item-title>{{loggedUser.name}}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { getMe } from "./services/users";
+
 export default {
   name: "Home",
   components: {},
@@ -55,8 +57,17 @@ export default {
       return localStorage.getItem("token") !== null;
     }
   },
+  async mounted() {
+    const resp = await getMe();
+    this.loggedUser.name = resp.data.name;
+    this.loggedUser.picture = resp.data.pictures[0].url;
+  },
   data() {
     return {
+      loggedUser: {
+        name: "",
+        picture: ""
+      },
       drawer: null,
       links: [
         {
