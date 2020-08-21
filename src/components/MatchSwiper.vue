@@ -35,7 +35,7 @@
           </div>
         </v-expand-transition>
       </v-card>
-      <v-dialog v-if="match" v-model="match" max-width="290">
+      <v-dialog v-if="match" v-model="match" max-width="290" persistent>
         <v-card>
           <v-card-title class="headline">It's a Match!</v-card-title>
           <v-card-text>You and {{match.name}} have liked each other for this movie.</v-card-text>
@@ -67,13 +67,13 @@
               <v-col cols="12" sm="6">
                 <div class="text-center">
                   <div class="my-2">
-                    <v-btn large color="pink" rounded dark :href="match.instagram">
+                    <v-btn large color="pink" rounded dark :href="match.instagram" target="_blank">
                       Go to Instagram
                       <v-icon right dark>mdi-instagram</v-icon>
                     </v-btn>
                   </div>
                   <div class="my-2">
-                    <v-btn large color="red" rounded dark :href="movie.url">
+                    <v-btn large color="red" rounded dark :href="movie.url" target="_blank">
                       Go to Netflix
                       <v-icon right dark>mdi-netflix</v-icon>
                     </v-btn>
