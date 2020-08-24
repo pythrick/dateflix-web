@@ -58,7 +58,6 @@ export default {
   },
   async mounted() {
     const resp = await listMovies(this.page);
-    this.requestCompleted = true;
     this.movies = [];
     for (const movie of resp.data.results) {
       this.movies.push({
@@ -71,6 +70,7 @@ export default {
     }
     this.page++;
     this.currentItem = this.movies[this.itemIndex];
+    this.requestCompleted = true;
   },
   methods: {
     getAnswer: async function(action) {
