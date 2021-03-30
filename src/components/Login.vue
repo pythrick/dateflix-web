@@ -12,7 +12,7 @@
         color="secondary"
         dark
         large
-        href="https://www.instagram.com/oauth/authorize?client_id=2670394346612031&redirect_uri=https://localhost:8080/signin&scope=user_profile,user_media&response_type=code"
+        href="https://www.instagram.com/oauth/authorize?client_id=147195077222459&redirect_uri=https://localhost:8080/signin&scope=user_profile,user_media&response_type=code"
       >
         Sign In with Instagram
         <v-icon right dark>mdi-instagram</v-icon>
@@ -24,7 +24,7 @@
         color="success"
         dark
         large
-        href="https://www.instagram.com/oauth/authorize?client_id=2670394346612031&redirect_uri=https://localhost:8080/signup&scope=user_profile,user_media&response_type=code"
+        href="https://www.instagram.com/oauth/authorize?client_id=147195077222459&redirect_uri=https://localhost:8080/signup&scope=user_profile,user_media&response_type=code"
       >
         Sign Up with Instagram
         <v-icon right dark>mdi-instagram</v-icon>
